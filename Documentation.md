@@ -7,3 +7,10 @@ You will see a page similar to this one. Just proceed to create an account!
 After registering an account, you should navigate to the instance section.<br><br>
 <img src="Screenshot 2025-06-05 130426.png" alt="My Image" width="1500"/><br>
 You will see a scene similar to this. Proceed to click on the "Launch Instances" button. It should be somewhere to the top right.
+Then we will choose what type of image (operating system) we want to work with.<br> 
+<img src="Screenshot 2025-06-05 130514.png" alt="My Image" width="500"/><br> This documentation will be written for Ubuntu (Linux).
+After choosing our image type, we will proceed to select our instance type. This is actually a physical device that our provider rents us, Infrastructure as a Service.<br>
+<img src="Screenshot 2025-06-05 130554.png" alt="My Image" width="500"/><br> 
+We will proceed with a t2.micro instance.
+Now, we need to create a key to be able to connect our instance remotely. This protocol is called SSH. Its key features are encrypting our data and transferring.<br> 
+<img src="Screenshot 2025-06-05 130608.png" alt="My Image" width="500"/><br> 
