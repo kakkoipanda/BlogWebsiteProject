@@ -14,3 +14,12 @@ After choosing our image type, we will proceed to select our instance type. This
 We will proceed with a t2.micro instance.
 Now, we need to create a key to be able to connect our instance remotely. This protocol is called SSH. Its key features are encrypting our data and transferring.<br> 
 <img src="Screenshot 2025-06-05 130608.png" alt="My Image" width="500"/><br> 
+And then we will see the networking settings section. We can use the default settings or configure them at this point.<br> 
+<img src="Screenshot 2025-06-05 130638.png" alt="My Image" width="500"/><br> 
+Because we want a website that is reachable from anywhere around the world via the internet, we need to open some ports!<br>
+<img src="s.png" alt="My Image" width="1000"/><br>
+We can do it by clicking one of the security groups we see in the picture. Then we will click the security group we see.
+There, we will open some ports. It should look something like this when we finish.
+<img src="Screenshot 2025-06-05 133103.png" alt="My Image" width="1000"/><br>
+
+
