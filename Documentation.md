@@ -22,5 +22,6 @@ We can do it by clicking one of the security groups we see in the picture. Then 
 There, we will open some ports. It should look something like this when we finish.
 <img src="Screenshot 2025-06-05 133103.png" alt="My Image" width="1000"/><br>
 ### SSH into our device
-When we created the key, it should have automatically downloaded. We are going to open the location where our key exists from our command prompt.
+When we created the key, it should have automatically downloaded. We are going to open the location where our key exists from our command prompt.<br>
+<img src="cmd.png" alt="My Image" width="500"/><br>
 
