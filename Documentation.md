@@ -87,10 +87,71 @@ EXIT;
 **Navigate to a temporary working directory:**<br>
 cd /tmp<br>
 **Why?**<br>
-The /tmp directory is a safe space for temporary files. We download and unzip WordPress here to keep the server tidy.<br>
+The /tmp directory is a safe space for temporary files. We download and unzip WordPress here to keep the server tidy.<br><br>
 **Download the latest version of WordPress:**<br>
 curl -O https://wordpress.org/latest.zip<br>
-Explanation:<br>
+**Explanation:**<br>
 curl is a command-line downloader.<br>
 -O saves the file with its original name (latest.zip).<br>
-This pulls the official, clean WordPress archive from wordpress.org.<br>
+This pulls the official, clean WordPress archive from wordpress.org.<br><br>
+**Unzip the downloaded file:**<br>
+unzip latest.zip<br>
+What this does:<br>
+Creates a new wordpress/ folder containing the full website codebase.<br><br>
+**Move WordPress files into Apache's web directory:**<br>
+sudo mv wordpress /var/www/html/blog*<br>
+Why “/var/www/html/blog”?*<br>
+/var/www/html is the default root folder for Apache on Ubuntu.*<br>
+We use /blog as a subfolder initially to avoid interfering with the existing Apache default page.*<br><br>
+**Set Correct File Permissions for WordPress**<br>
+Change ownership of all WordPress files to Apache:<br>
+sudo chown -R www-data:www-data /var/www/html/blog<br>
+Explanation:<br>
+Part Meaning<br>
+chown	“Change ownership” of files<br>
+-R	Recursively apply to all subfolders/files<br>
+www-data:www-data	This is the default user & group that Apache runs under<br>
+/var/www/html/blog	Target WordPress folder<br>
+**Why? So Apache can read and write the files. This includes media uploads, themes, and plugin updates.**<br><br>
+**Set secure access permissions:**<br>
+sudo chmod -R 755 /var/www/html/blog<br>
+Explanation:<br>
+Mode	Who	What it does<br>
+7 -	Owner	Read, write, execute<br>
+5 - Group	Read and execute<br>
+5 -	Others	Read and execute<br>
+This ensures:<br>
+Files are readable by Apache<br>
+Only Apache (and root) can modify files<br>
+Directories can be navigated properly<br><br>
+****Configure Apache to Serve the WordPress Site****<br>
+We will redirect our main page to our WordPress website.<br>
+Create a new Apache site configuration:<br>
+sudo nano /etc/apache2/sites-available/blog.conf<br>
+This opens a blank file for a new Apache config.<br><br>
+
+Paste the following into blog.conf:<br>
+<img src="acac.png" alt="My Image" width="500"/>
+
+Let’s break this down:<br>
+Directive	Purpose<br>
+VirtualHost *:80	Listens on port 80 (HTTP)<br>
+ServerAdmin	Contact email for server errors<br>
+DocumentRoot	The folder Apache serves (your WordPress path)<br>
+ServerName	Your domain (e.g. neuralmythos.com)<br>
+<Directory>	Applies Apache rules to your WordPress folder<br>
+AllowOverride All	Enables .htaccess files (required for WordPress permalinks)<br>
+ErrorLog / CustomLog	Where Apache logs issues and access<br>
+
+**Enable the site configuration:**<br>
+sudo a2ensite blog.conf<br>
+This creates a symlink in /etc/apache2/sites-enabled/<br>
+Activates your new virtual host<br><br>
+
+**Enable Apache’s rewrite module:**<br>
+sudo a2enmod rewrite<br>
+**Why?**<br>
+WordPress uses “pretty permalinks” like /about/ — this requires the mod_rewrite engine.<br><br>
+
+**Reload Apache to apply changes:**<br>
+sudo systemctl reload apache2<br>
