@@ -155,3 +155,5 @@ WordPress uses “pretty permalinks” like /about/ — this requires the mod_re
 
 **Reload Apache to apply changes:**<br>
 sudo systemctl reload apache2<br>
+
+Now we should have a running WordPress website that we can customise!
