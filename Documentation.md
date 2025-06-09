@@ -156,4 +156,13 @@ WordPress uses “pretty permalinks” like /about/ — this requires the mod_re
 **Reload Apache to apply changes:**<br>
 sudo systemctl reload apache2<br>
 
-Now we should have a running WordPress website that we can customise!
+Now we should have a running WordPress website that we can customise!<br><br>
+
+**Add HTTPS with Let’s Encrypt**<br>
+You can’t have a modern website without HTTPS — and Let’s Encrypt gives us certificates for free. I install Certbot<br>
+sudo apt install certbot python3-certbot-apache -y<br>
+sudo certbot --apache<br>
+It will ask you which domain to secure, and whether you want to force HTTPS, which I do. Once it's done, our site is locked, encrypted, and protected.<br><br>
+
+Now, restart the web server. This reloads everything — the new file structure, the site config, and the rewrite rules.<br>
+sudo systemctl restart apache2
